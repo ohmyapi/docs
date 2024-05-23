@@ -1,0 +1,11 @@
+{
+    "meta": {
+        "title": "Support",
+        "summary": "You can contact us and we help you or maybe you help us."
+    },
+    "components": [
+        {
+            "component": "support"
+        }
+    ]
+}

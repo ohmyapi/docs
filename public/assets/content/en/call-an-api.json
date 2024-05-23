@@ -1,0 +1,53 @@
+{
+    "meta": {
+        "title": "Call an API",
+        "summary": "You know there are a lot of APIs on previus step and know it's time to know how to call them."
+    },
+    "components": [
+        {
+            "component": "html",
+            "inputs": {
+                "value": "Every APIs in service has a name called <span class='badge badge-primary rounded'>ACTION</span> and you call any API with action and some parameters as request data."
+            },
+            "class": "mb-4"
+        },
+        {
+            "component": "tabs",
+            "inputs": {
+                "values": [
+                    {
+                        "tab": "Javascript",
+                        "active": true,
+                        "components": [
+                            {
+                                "component": "code",
+                                "inputs": {
+                                    "language": "javascript",
+                                    "value": "api.call({\n\t\"action\": \"api.v1.ohmyapi.greeter.hello\"\n\t\"params\": { \"name\": \"mirza\" }\n}).then((result) => {\n console.log(result); \n});"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "component": "html",
+            "inputs": {
+                "value": "These are your parameters you can pass through call function."
+            },
+            "class": "mt-8"
+        },
+        {
+            "component": "table",
+            "inputs": {
+                "head": ["Parameter", "Type", "Required", "Default", "Description"],
+                "rows": [
+                    ["action", "string", "yes", "null", "Your API name"],
+                    ["params", "object", "yes", "{}", "Your data as input parameters for the acion"],
+                    ["cache", "boolean", "no", "false", "Get response data from server's cache"]
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "meta": {
+        "title": "Response structure",
+        "summary": "We always send this structure as response to you so you don't need to worry about it being unstructed."
+    },
+    "components": [
+        {
+            "component": "table",
+            "inputs": {
+                "head": ["Parameter", "Type", "Required", "Default", "Description"],
+                "rows": [
+                    ["status", "boolean", "true", "false", "Action progress is successful or not"],
+                    ["code", "number", "true", "200", "Action progress status as HTTP response code"],
+                    ["i18n", "string", "true", "OK", "Action response message for handle message on your application"],
+                    ["message", "string", "false", "undefined", "Action response message (sometimes it handled with 'i18n')"],
+                    ["meta", "object", "false", "undefined", "Action response meta data"],
+                    ["meta.page", "number", "false", "undefined", "Action current page"],
+                    ["meta.last", "number", "false", "undefined", "Action last page"],
+                    ["meta.total", "number", "false", "undefined", "Action total data"],
+                    ["meta.took", "number", "false", "undefined", "Action progress took in miliseconds"],
+                    ["data", "any", "false", "undefined", "Action response data"]
+                ]
+            }
+        }
+    ]
+}

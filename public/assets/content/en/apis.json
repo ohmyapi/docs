@@ -1,0 +1,11 @@
+{
+    "meta": {
+        "title": "APIs",
+        "summary": "These are all available APIs we are provided to you"
+    },
+    "components": [
+        {
+            "component": "api-list"
+        }
+    ]
+}

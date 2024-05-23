@@ -1,0 +1,51 @@
+[
+    {
+        "icon": "home",
+        "text": "Getting Started",
+        "content": "getting-started",
+        "children": [
+            {
+                "text": "Installation",
+                "content": "installation"
+            },
+            {
+                "text": "Get a token",
+                "content": "get-token"
+            },
+            {
+                "text": "New instance",
+                "content": "new-instance"
+            }
+        ]
+    },
+    {
+        "icon": "code",
+        "text": "API Refrence",
+        "content": "api-refrence",
+        "children": [
+            {
+                "text": "APIs",
+                "content": "apis"
+            },
+            {
+                "text": "Call an API",
+                "content": "call-an-api"
+            },
+            {
+                "text": "Response structure",
+                "content": "response-structure"
+            }
+        ]
+    },
+    {
+        "icon": "help_outline",
+        "text": "Help",
+        "content": "help",
+        "children": [
+            {
+                "text": "Support",
+                "content": "support"
+            }
+        ]
+    }
+]

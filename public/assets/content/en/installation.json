@@ -1,0 +1,47 @@
+{
+    "meta": {
+        "title": "Installation",
+        "summary": "In this step we want to know how to install ohmyapi software development kit (SDK)"
+    },
+    "components": [
+        {
+            "component": "html",
+            "inputs": {
+                "value": "We made some SDK for you to just call APIs with our functions and you can install it for your programming languages."
+            },
+            "class": "mb-4"
+        },
+        {
+            "component": "tabs",
+            "inputs": {
+                "values": [
+                    {
+                        "tab": "NodeJS",
+                        "active": true,
+                        "components": [
+                            {
+                                "component": "code",
+                                "inputs": {
+                                    "language": "bash",
+                                    "value": "npm i @ohmyapi/sdk"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "tab": "Browser",
+                        "components": [
+                            {
+                                "component": "code",
+                                "inputs": {
+                                    "language": "html",
+                                    "value": "<script src=\"https://cdn.ohmyapi.com/packages/sdk.min.js\"></script>"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

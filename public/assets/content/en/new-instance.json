@@ -1,0 +1,63 @@
+{
+    "meta": {
+        "title": "New instance",
+        "summary": "Create a new instance of OhMyApi class and ready to go"
+    },
+    "components": [
+        {
+            "component": "html",
+            "inputs": {
+                "value": "After you have your access token and installed our SDK library for your programming language, now it's time to make your instance."
+            },
+            "class": "mb-4"
+        },
+        {
+            "component": "tabs",
+            "inputs": {
+                "values": [
+                    {
+                        "tab": "Javascript",
+                        "active": true,
+                        "components": [
+                            {
+                                "component": "code",
+                                "inputs": {
+                                    "language": "javascript",
+                                    "value": "const OhMyAPI = require(\"@ohmyapi/sdk\");\n\nconst ohmyapi = new OhMyAPI({\n\t\"token\": \"ACCESS_TOKEN\"\n});"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "tab": "Typescript",
+                        "components": [
+                            {
+                                "component": "code",
+                                "inputs": {
+                                    "language": "typescript",
+                                    "value": "import OhMyAPI from \"@ohmyapi/sdk\";\n\nconst ohmyapi = new OhMyAPI({\n\t\"token\": \"ACCESS_TOKEN\"\n});"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "component": "html",
+            "inputs": {
+                "value": "These are your parameters you can pass through constructor."
+            },
+            "class": "mt-8"
+        },
+        {
+            "component": "table",
+            "inputs": {
+                "head": ["Parameter", "Type", "Required", "Default", "Description"],
+                "rows": [
+                    ["token", "string", "yes", "null", "Your access token"]
+                ]
+            }
+        }
+    ]
+}

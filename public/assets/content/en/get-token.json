@@ -1,0 +1,14 @@
+{
+    "meta": {
+        "title": "Get a token",
+        "summary": "In this step you will get a new access token from console"
+    },
+    "components": [
+        {
+            "component": "html",
+            "inputs": {
+                "value": "<img src='/assets/images/console-dashboard.webp' alt='OhMyAPI console dashboard' class='w-full object-center object-contain' /> <br /> <h4 class='font-bold text-xl mb-2'>These are your steps :</h4> <ol class='list-decimal ms-8'> <li>Open <a href='https://console.ohmyapi.com' class='underline text-primary'>OhMyAPI Console</a> and login it if you have an account.</li> <li>Then click on 'My tokens' card and click on 'create one' button.</li> <li>Choose an expire date for your access token and get your new access token.</li> <li>Copy it on your clipboard and paste it any where you want.</li> </ol>"
+            }
+        }
+    ]
+}
