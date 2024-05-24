@@ -5,7 +5,7 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [],
   template: `
-      <table class="table">
+      <table class="table whitespace-pre">
         <!-- head -->
         <thead>
           <tr class="bg-base-200">
