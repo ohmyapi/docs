@@ -13,7 +13,7 @@ import { NgClass } from '@angular/common';
     <app-header (opened)="opened = !opened"/>
 
     <section class="flex flex-nowrap grow z-0">
-      <div class="w-screen min-w-[100vw] md:w-72 md:min-w-72 h-full transition-all"
+      <div class="w-screen min-w-[100vw] bg-base-100 md:w-72 md:min-w-72 h-full transition-all fixed md:sticky top-[64px] z-10"
         [ngClass]="{
           '-ms-[100vw] md:ms-0': !opened
         }"
@@ -21,7 +21,7 @@ import { NgClass } from '@angular/common';
         <app-drawer (closed)="opened = false"/>
       </div>
 
-      <div class="grow border-s overflow-hidden min-w-[100vw] md:min-w-[unset]">
+      <div class="grow border-s overflow-hidden min-w-[100vw] md:min-w-[unset] z-0">
         <router-outlet />
 
         <app-footer />

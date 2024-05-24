@@ -32,7 +32,7 @@ import { DialogRef } from '@angular/cdk/dialog';
     }
   `,
   host: {
-    class: 'fixed -top-64 bg-base-100 text-base-content rounded-btn w-128 flex flex-col overflow-hidden shadow'
+    class: 'fixed -top-64 bg-base-100 text-base-content rounded-btn w-80 md:w-128 flex flex-col overflow-hidden shadow'
   }
 })
 export class SearchComponent {
