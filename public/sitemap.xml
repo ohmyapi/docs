@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <url>
+    <loc>https://docs.ohmyapi.com/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/getting-started/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/installation/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/get-token/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/new-instance/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/api-refrence/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/apis/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/call-an-api/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/response-structure/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/help/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://docs.ohmyapi.com/support/</loc>
+    <lastmod>2024-05-24T19:55:41+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+
+
+</urlset>
