@@ -10,15 +10,15 @@ import { SeoService } from '../services/seo.service';
   standalone: true,
   imports: [DcContentComponent, DcSupportComponent, NgOptimizedImage],
   template: `
-    <div class="absolute -top-56 -end-56 bg-primary blur-[250px] rounded-full w-128 h-128"></div>
+    <div class="absolute -top-56 -end-56 bg-primary blur-[250px] rounded-full w-128 h-128 z-[-1]"></div>
 
-    <h1 class="font-bold text-5xl mt-10">Meet OhMyAPI Docs</h1>
+    <h1 class="font-bold text-5xl mt-10 z-0">Meet OhMyAPI Docs</h1>
 
-    <p class="text-xl text-gray-500">
+    <p class="text-xl text-gray-500 z-0">
       🤌 Easy ⚡️ Fast 😎 Premium and 😜 Free to use public APIs any where 
     </p>
 
-    <div class="grid md:grid-cols-2 gap-4 w-full mt-10">
+    <div class="grid md:grid-cols-2 gap-4 w-full mt-10 z-0">
       @for (item of contentService.linksAsTree; track $index) {
         <app-dc-content
           icon="{{item['icon']}}"
