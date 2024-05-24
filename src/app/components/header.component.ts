@@ -15,7 +15,7 @@ import { SearchComponent } from './search.component';
 
     <div class="md:hidden flex-1"></div>
 
-    <a routerLink="/">
+    <a (click)="closed.emit()" routerLink="/">
       <img ngSrc="/assets/icons/icon-192x192.png" alt="ohmyapi logo" width="86" height="86" priority />
     </a>
 
@@ -43,6 +43,9 @@ import { SearchComponent } from './search.component';
 export class HeaderComponent {
   @Output()
   public opened = new EventEmitter<void>();
+
+  @Output()
+  public closed = new EventEmitter<void>();
 
   constructor(
     private dialogService: DialogService

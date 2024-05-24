@@ -10,7 +10,7 @@ import { NgClass } from '@angular/common';
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, FooterComponent, DrawerComponent, NgClass],
   template: `
-    <app-header (opened)="opened = !opened"/>
+    <app-header (opened)="opened = !opened" (closed)="opened = false"/>
 
     <section class="flex flex-nowrap grow z-0">
       <div class="w-screen min-w-[100vw] bg-base-100 md:w-72 md:min-w-72 h-full transition-all fixed md:sticky top-[64px] z-10"
