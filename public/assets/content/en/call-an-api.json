@@ -23,7 +23,7 @@
                                 "component": "code",
                                 "inputs": {
                                     "language": "javascript",
-                                    "value": "api.call({\n\t\"action\": \"api.v1.ohmyapi.greeter.hello\"\n\t\"params\": { \"name\": \"mirza\" }\n}).then((result) => {\n console.log(result); \n});"
+                                    "value": "ohmyapi.call({\n\t\"action\": \"api.v1.ohmyapi.greeter.hello\"\n\t\"params\": { \"name\": \"mirza\" }\n}).then((result) => {\n console.log(result); \n});"
                                 }
                             }
                         ]
