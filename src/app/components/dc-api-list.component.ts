@@ -2,11 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DcCodeComponent } from './dc-code.component';
+import { DcApiOneComponent } from './dc-api-one.component';
+import { DialogService } from '../services/dialog.service';
+import { AuthComponent } from './auth.component';
 
 @Component({
   selector: 'app-dc-api-list',
   standalone: true,
-  imports: [FormsModule, DcCodeComponent],
+  imports: [FormsModule, DcCodeComponent, DcApiOneComponent],
   template: `
     <div class="flex flex-nowrap items-center gap-4 bg-base-200 rounded-btn h-14 px-4">
       <i class="material-icons-outlined text-gray-500">search</i>
@@ -14,7 +17,7 @@ import { DcCodeComponent } from './dc-code.component';
       <input [(ngModel)]="search" (ngModelChange)="onFilterChange()" type="text" placeholder="Search for API" class="grow outline-none bg-transparent placeholder:text-gray-500"/>
     </div>
 
-    @if(data.length == 0 && total == 0) {
+    @if(actions.length == 0 && total == 0) {
       <div class="flex flex-col items-center justify-center gap-4 h-96">
         <span class="loading loading-spinner loading-lg text-primary"></span>
 
@@ -23,16 +26,30 @@ import { DcCodeComponent } from './dc-code.component';
     }
     @else {
       <div class="border-b p-2 text-sm flex flex-nowrap items-center gap-2 mb-4">
-        <span class="badge badge-success badge-xs animate-pulse"></span>
-        <p>We have <span class="text-primary">{{total}}</span> APIs available for now</p>
+        <p class="flex-1"><span class="badge badge-success badge-xs animate-pulse mr-2"></span> We have <span class="text-primary">{{total}}</span> APIs available for now</p>
+
+        <button (click)="loadAllActions()" class="btn btn-sm btn-ghost">
+          <i class="material-icons-outlined scale-75">sync</i>
+          <span>Update</span>
+        </button>
+
+        <button (click)="openAuthAsDialog()" class="btn btn-sm btn-primary">
+          Authenticate
+        </button>
        </div>
 
         <div class="flex flex-col gap-2">
           @for (item of data; track $index) {
-            <div class="border rounded-btn flex flex-col transition-all hover:shadow">
-              <div class="flex flex-nowrap items-center gap-2 p-4 cursor-pointer" (click)="item['opened'] = item['opened'] ? false : true">
+            <div class="border rounded-btn flex flex-col overflow-hidden transition-all hover:shadow">
+              <div class="flex flex-nowrap items-center gap-2 p-4 cursor-pointer bg-base-100" (click)="item['opened'] = item['opened'] ? false : true">
                 <div class="flex flex-col gap-1 grow">
-                  <strong>{{item['name']}}</strong>
+                  <div class="flex flex-nowrap items-center gap-1">
+                    <strong>{{item['name']}}</strong>
+
+                    @if(item['permissions'] && item['permissions'].length != 0) {
+                      <i class="material-icons-outlined !w-4 !h-4 !text-[16px]">lock</i>
+                    }
+                  </div>
                   <p class="text-sm text-gray-500">{{item['description']}}</p>
                 </div>
 
@@ -54,8 +71,8 @@ import { DcCodeComponent } from './dc-code.component';
               </div>
 
               @if(item['opened']) {
-                <div class="carousel carousel-center gap-2 px-4 text-xs overflow-y-scroll">
-                  <div class="carousel-item border rounded-lg p-2 flex flex-col gap-1 col-span-2 min-w-96 relative">
+                <div class="carousel carousel-center gap-2 pe-4 text-xs overflow-y-scroll">
+                  <div class="carousel-item border rounded-lg p-2 flex flex-col gap-1 col-span-2 min-w-56 sm:min-w-96 relative ms-4">
                     <span>Call</span>
                     <strong>{{item['name']}}</strong>
 
@@ -89,15 +106,24 @@ import { DcCodeComponent } from './dc-code.component';
                 </div>
 
                 <div role="tablist" class="tabs tabs-lifted m-4">
-                  <input type="radio" name="api-content-{{$index}}" role="tab" class="tab peer [--tab-bg:var(--fallback-n,oklch(var(--n)))] [--tab-border-color:var(--fallback-n,oklch(var(--n)))] [--tab-color:var(--fallback-n,oklch(var(--n)))] checked:[--tab-color:var(--fallback-nc,oklch(var(--nc)))]" aria-label="Parameters" checked />
-                  <div role="tabpanel" class="tab-content bg-neutral rounded-lg peer-checked:!rounded-tl-none">
+                  <input type="radio" name="api-content-{{$index}}" role="tab" class="tab peer [--tab-bg:var(--fallback-n,oklch(var(--n)))] [--tab-border-color:var(--fallback-n,oklch(var(--n)))] [--tab-color:var(--fallback-n,oklch(var(--n)))] checked:[--tab-color:var(--fallback-nc,oklch(var(--nc)))]" aria-label="Example" checked />
+                  <div role="tabpanel" class="tab-content bg-neutral rounded-lg overflow-hidden peer-checked:!rounded-tl-none">
+                    <app-dc-api-one 
+                      action="{{item['name']}}"
+                      [params]="item['params']"
+                      class="p-4"
+                    />
+                  </div>
+
+                  <input type="radio" name="api-content-{{$index}}" role="tab" class="tab [--tab-bg:var(--fallback-n,oklch(var(--n)))] [--tab-border-color:var(--fallback-n,oklch(var(--n)))] checked:[--tab-color:var(--fallback-nc,oklch(var(--nc)))]" aria-label="Parameters" />
+                  <div role="tabpanel" class="tab-content bg-neutral rounded-lg">
                     <app-dc-code
                       language="json"
                       value="{{formatParams(item['params'])}}"
                     />
                   </div>
 
-                  <input type="radio" name="api-content-{{$index}}" role="tab" class="tab [--tab-bg:var(--fallback-n,oklch(var(--n)))] [--tab-border-color:var(--fallback-n,oklch(var(--n)))] [--tab-color:] checked:[--tab-color:var(--fallback-nc,oklch(var(--nc)))]" aria-label="Javascript" />
+                  <input type="radio" name="api-content-{{$index}}" role="tab" class="tab [--tab-bg:var(--fallback-n,oklch(var(--n)))] [--tab-border-color:var(--fallback-n,oklch(var(--n)))] checked:[--tab-color:var(--fallback-nc,oklch(var(--nc)))]" aria-label="Javascript" />
                   <div role="tabpanel" class="tab-content bg-neutral rounded-lg">
                     <app-dc-code
                       language="javascript"
@@ -116,7 +142,7 @@ import { DcCodeComponent } from './dc-code.component';
   }
 })
 export class DcApiListComponent {
-  private actions: any[] = [];
+  public actions: any[] = [];
 
   public total: number = 0;
 
@@ -125,11 +151,16 @@ export class DcApiListComponent {
   public data: any[] = [];
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private dialogService: DialogService
   ) { }
 
   ngOnInit() {
     this.loadAllActions();
+  }
+
+  public openAuthAsDialog() {
+    this.dialogService.open(AuthComponent);
   }
 
   public onFilterChange() {
@@ -156,7 +187,10 @@ export class DcApiListComponent {
     navigator.clipboard.writeText(value);
   }
 
-  private loadAllActions() {
+  public loadAllActions() {
+    this.actions = [];
+    this.total = 0;
+
     this.httpClient.get('https://api.ohmyapi.com/v1/action').subscribe({
       next: (res: any) => {
         this.actions = res['data'];

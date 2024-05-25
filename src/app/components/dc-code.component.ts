@@ -6,10 +6,10 @@ import hljs from 'highlight.js';
   standalone: true,
   imports: [],
   template: `
-    <code class="whitespace-pre" #code></code>
+    <code class="whitespace-pre overflow-auto h-full" #code></code>
 
     @if(copyable) {
-      <button (click)="copy()" class="btn btn-square btn-ghost absolute top-2 right-2 tooltip tooltip-left" data-tip="Copy to clipboard">
+      <button (click)="copy()" class="btn btn-sm btn-square btn-ghost absolute top-4 right-4 tooltip tooltip-left" data-tip="Copy to clipboard">
         <i class="material-icons-outlined">content_copy</i>
       </button>
     }

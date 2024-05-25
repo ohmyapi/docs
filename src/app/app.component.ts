@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header.component';
 import { DrawerComponent } from './components/drawer.component';
 import { FooterComponent } from './components/footer.component';
-import { NgClass } from '@angular/common';
+import { NgClass, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -34,4 +34,19 @@ import { NgClass } from '@angular/common';
 })
 export class AppComponent {
   public opened: boolean = false;
+
+  constructor(
+    @Inject(PLATFORM_ID)
+    private platformId: string,
+  ) { }
+
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      const token = new URLSearchParams(window.location.search).get('token');
+
+      if (token) {
+        window.localStorage.setItem('#ohmyapi/token', token);
+      }
+    }
+  }
 }
