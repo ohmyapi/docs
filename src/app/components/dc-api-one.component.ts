@@ -89,10 +89,14 @@ export class DcApiOneComponent {
 
     const token = window.localStorage.getItem('#ohmyapi/token');
 
+    let headers: any = {};
+
+    if(token) {
+      headers['Authorization'] = token;
+    }
+
     this.httpClient.post(`https://api.ohmyapi.com/v1/call/${this.action}`, this.value, {
-      headers: {
-        'Authorization': token!,
-      }
+      headers: headers,
     }).subscribe({
       next: (res) => {
         this.response = JSON.stringify(res, null, 2);
