@@ -72,11 +72,13 @@ import { AuthComponent } from './auth.component';
 
               @if(item['opened']) {
                 <div class="carousel carousel-center gap-2 pe-4 text-xs overflow-y-scroll">
-                  <div class="carousel-item border rounded-lg p-2 flex flex-col gap-1 col-span-2 min-w-56 sm:min-w-96 relative ms-4">
-                    <span>Call</span>
-                    <strong>{{item['name']}}</strong>
+                  <div class="carousel-item border rounded-lg p-2 flex flex-nowrap items-center gap-1 col-span-2 min-w-56 w-fit sm:min-w-96 relative ms-4">
+                    <div class="flex flex-col gap-1 flex-1">
+                      <span>Call</span>
+                      <strong>{{item['name']}}</strong>
+                    </div>
 
-                    <button (click)="copyToClipboard(item['name'])" class="btn btn-sm btn-ghost btn-circle absolute right-2 top-3 tooltip tooltip-left" data-tip="Copy to clipboard">
+                    <button (click)="copyToClipboard(item['name'])" class="btn btn-sm btn-ghost btn-circle tooltip tooltip-left" data-tip="Copy to clipboard">
                       <i class="material-icons-outlined scale-75">content_copy</i>
                     </button>
                   </div>
@@ -193,9 +195,12 @@ export class DcApiListComponent {
 
     this.httpClient.get('https://api.ohmyapi.com/v1/action').subscribe({
       next: (res: any) => {
-        this.actions = res['data'];
-        this.data = res['data'];
-        this.total = res['meta']['total'];
+        const data = res['data'].filter((item: any) => !item.name.includes('ohmyapi'));
+        const count = res['meta']['total'] - (res['data'].length - data.length);
+
+        this.actions = data;
+        this.data = data;
+        this.total = count;
       }
     })
   }
