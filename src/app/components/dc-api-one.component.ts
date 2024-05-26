@@ -9,22 +9,22 @@ import { DcCodeComponent } from './dc-code.component';
   standalone: true,
   imports: [FormsModule, DcCodeComponent],
   template: `
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col gap-4 rounded-lg h-fit sticky top-4" [class.bg-base-100]="form.length != 0"  [class.p-4]="form.length != 0">
       @for (item of form; track $index) {
         <div class="form-control">
           <label class="label">
-            <span class="label-text text-neutral-content">{{item['label']}}</span>
+            <span class="label-text">{{item['label']}}</span>
             @if(item['required']) {
               <span class="label-text-alt text-red-400">Required</span>
             }
           </label>
 
           @if (item['type'] == 'text') {
-            <input [disabled]="disabled" type="text" [(ngModel)]="value[item['key']]" class="input text-neutral" />
+            <input [disabled]="disabled" type="text" [(ngModel)]="value[item['key']]" class="input bg-base-200 text-base-content" />
           }
 
           @if (item['type'] == 'number') {
-            <input [disabled]="disabled" type="number" [min]="item['min']" [max]="item['max']" [(ngModel)]="item['value']" class="input text-neutral" />
+            <input [disabled]="disabled" type="number" [min]="item['min']" [max]="item['max']" [(ngModel)]="item['value']" class="input bg-base-200 text-base-content" />
           }
         </div>
       }
@@ -51,7 +51,7 @@ import { DcCodeComponent } from './dc-code.component';
     </div>
   `,
   host: {
-    class: 'grid md:grid-cols-2 gap-4 bg-neutral text-neutral-content'
+    class: 'flex flex-col md:grid md:grid-cols-2 gap-4 bg-neutral text-neutral-content'
   }
 })
 export class DcApiOneComponent {
@@ -91,7 +91,7 @@ export class DcApiOneComponent {
 
     let headers: any = {};
 
-    if(token) {
+    if (token) {
       headers['Authorization'] = token;
     }
 
