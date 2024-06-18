@@ -58,6 +58,10 @@ import { AuthComponent } from './auth.component';
                     <div class="badge badge-success">FREE</div>
                   }
 
+                  @if(item['price']['type'] == 'dynamic') {
+                    <div class="badge badge-info">DYNAMIC</div>
+                  }
+
                   @if(item['price']['type'] == 'fixed') {
                     <div class="badge badge-warning">{{item['price']['amount']}}</div>
                   }
